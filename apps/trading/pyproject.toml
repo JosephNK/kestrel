@@ -93,6 +93,7 @@ beautifulsoup4 = "^4.12.3"
 uvicorn = "^0.32.1"
 pyupbit = "^0.2.34"
 poethepoet = "^0.31.1"
+ta = "^0.11.0"
 
 [build-system]
 requires = ["poetry-core"]

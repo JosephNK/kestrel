@@ -74,14 +74,18 @@ async def health():
 )
 async def test():
     try:
-        # UpbitExchange
         exchange = UpbitExchange()
-        source = exchange.get30DayCandle()
-
-        # KestrelAiModelAgent
         ai_agent = KestrelAiModelAgent()
-        result = ai_agent.invoke(source=source)
-        print(result)
+
+        # 분석용 데이터 준비
+        analysis_data = exchange.prepare_analysis_data()
+
+        # AI 매매 결정
+        answer = ai_agent.invoke(source_data=analysis_data)
+
+        # 매매 실행
+        exchange.trading(answer=answer)
+
         return BaseResponse[TradingDto](
             status_code=status.HTTP_200_OK, item=TradingDto()
         )
@@ -90,3 +94,17 @@ async def test():
         raise HttpJsonException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, error_message=str(e)
         )
+
+
+def run():
+    exchange = UpbitExchange()
+    ai_agent = KestrelAiModelAgent()
+
+    # 분석용 데이터 준비
+    analysis_data = exchange.prepareAnalysisData()
+
+    # AI 매매 결정
+    answer = ai_agent.invoke(source_data=analysis_data)
+
+    # 매매 실행
+    exchange.trading(answer=answer)
