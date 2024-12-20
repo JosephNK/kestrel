@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "kestrel"
+name = "kestrel-trading"
 version = "0.0.1"
-description = "Kestrel Project."
+description = "Kestrel AI Trading Project."
 authors = ["JosephNK <nkw0608@gmail.com>"]
 license = "MIT"
 readme = "README.md"
